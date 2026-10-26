@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="src/favicon.png">
+
+    <title>Archive 62|26 — Perfeito Acessórios de Moda</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: "STIX Two Text";
+            src: url("src/fonts/STIXTwoText-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Avenir Next Condensed";
+            src: url("src/fonts/avenir-next-condensed-bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 50px;
+            background-color: #111111;
+            background-image: url("src/background.jpg");
+            background-repeat: repeat;
+            background-position: top left;
+            color: #F4F4F4;
+            font-family: "STIX Two Text", serif;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           POST-ITS / SEÇÕES
+        ========================================================= */
+
+        .section-block {
+            width: 100%;
+            scroll-margin-top: 30px;
+        }
+
+        .section-paper {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            background: transparent;
+            color: inherit;
+            box-shadow: none;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            width: 100%;
+            margin: 0 0 46px;
+            scroll-margin-top: 30px;
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,.61,.36,1);
+        }
+
+        .section-heading.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 1s cubic-bezier(.22,.61,.36,1) 0.15s;
+        }
+
+        .section-heading.is-visible::after {
+            transform: scaleX(1);
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: clamp(28px, 3vw, 48px);
+            line-height: 0.95;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+        }
+
+        .section-heading-index {
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: 0.08em;
+            opacity: 0.55;
+        }
+
+        /* =========================================================
+           HERO / MENU
+        ========================================================= */
+
+        .hero {
+            width: 100%;
+            padding-top: 40px;
+        }
+
+        .folder-tabs {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .folder-tab {
+            display: block;
+            padding: 14px 28px 12px;
+            color: #111111;
+            text-decoration: none;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 16px;
+            line-height: 1;
+            border-radius: 0;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.22);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .folder-tab:nth-child(1) { background: #E9D98C; }
+        .folder-tab:nth-child(2) { background: #A9CBE3; }
+        .folder-tab:nth-child(3) { background: #D9B7D8; }
+        .folder-tab:nth-child(4) { background: #B8D2B0; }
+
+        .folder-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 5px 8px 0 rgba(0, 0, 0, 0.22);
+            filter: brightness(1.04);
+        }
+
+        .folder {
+            width: 100%;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .folder img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* =========================================================
+           MANIFESTO
+        ========================================================= */
+
+        .manifesto {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 70px 0 160px;
+        }
+
+        .manifesto-column {
+            font-size: clamp(14px, 0.9vw, 15.5px);
+            line-height: 1.4;
+            letter-spacing: -0.005em;
+        }
+
+        .manifesto-column p {
+            margin: 0 0 1.2em;
+            text-align: justify;
+        }
+
+        .manifesto-column p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================================
+           MOODBOARD
+        ========================================================= */
+
+        .moodboard {
+            width: 100%;
+            min-height: 950px;
+            position: relative;
+            padding: 30px 0 150px;
+        }
+
+        .moodboard-item {
+            position: absolute;
+            overflow: hidden;
+            line-height: 0;
+            transform: scale(1);
+            transform-origin: center center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .moodboard-item img,
+        .moodboard-item video {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .moodboard:hover .moodboard-item {
+            opacity: 0.3;
+        }
+
+        .moodboard .moodboard-item:hover {
+            opacity: 1;
+            transform: scale(1.06);
+            z-index: 10;
+        }
+
+
+        /* =========================================================
+           IMAGENS
+           Proporções baseadas nas dimensões originais
+        ========================================================= */
+
+        /* img-trem — 640 x 800 */
+        .item-01 {
+            width: 210px;
+            left: 1%;
+            top: 70px;
+        }
+
+        /* img-mao — 736 x 1131 */
+        .item-02 {
+            width: 175px;
+            left: 20%;
+            top: 25px;
+        }
+
+        /* img — 700 x 1249 */
+        .item-03 {
+            width: 175px;
+            left: 38%;
+            top: 105px;
+        }
+
+        /* download — 600 x 750 */
+        .item-04 {
+            width: 195px;
+            right: 25%;
+            top: 35px;
+        }
+
+        /* download (3) — 719 x 886 */
+        .item-05 {
+            width: 190px;
+            right: 2%;
+            top: 95px;
+        }
+
+        /* download (2) — 736 x 729 */
+        .item-06 {
+            width: 195px;
+            left: 27%;
+            top: 390px;
+        }
+
+        /* download (1) — 736 x 1018 */
+        .item-07 {
+            width: 180px;
+            left: 8%;
+            top: 500px;
+        }
+
+        /* Jean Paul Gaultier — 1920 x 2880 */
+        .item-08 {
+            width: 195px;
+            left: 47%;
+            top: 500px;
+        }
+
+        /* Chloé — 1920 x 2881 */
+        .item-09 {
+            width: 195px;
+            right: 20%;
+            top: 390px;
+        }
+
+        /* Chanel — 1920 x 2838 */
+        .item-10 {
+            width: 190px;
+            right: 1%;
+            top: 530px;
+        }
+
+
+        /* =========================================================
+           VÍDEOS
+           Todos mantêm sua proporção original
+        ========================================================= */
+
+        /* video-01 — 720 x 1280 */
+        .item-11 {
+            width: 175px;
+            left: 11%;
+            top: 285px;
+        }
+
+        /* video-02 — 720 x 1280 */
+        .item-12 {
+            width: 175px;
+            left: 60%;
+            top: 235px;
+        }
+
+        /* video-03 — 720 x 1280 */
+        .item-13 {
+            width: 175px;
+            right: 8%;
+            top: 315px;
+        }
+
+        /* video-04 — 684 x 918 */
+        .item-14 {
+            width: 195px;
+            left: 31%;
+            top: 720px;
+        }
+
+
+        /* =========================================================
+           REVEAL / MICRO-ANIMAÇÕES
+        ========================================================= */
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.22,.61,.36,1);
+        }
+
+        .reveal-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           CORES
+        ========================================================= */
+
+        .colors {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 16px;
+            padding: 0 0 150px;
+            scroll-margin-top: 30px;
+        }
+
+        .color-item {
+            width: 100%;
+            max-width: 190px;
+            justify-self: center;
+            line-height: 0;
+            overflow: hidden;
+            background: transparent;
+            transition: transform 0.45s cubic-bezier(.22,.61,.36,1), box-shadow 0.45s ease;
+        }
+
+        .color-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.55s cubic-bezier(.22,.61,.36,1);
+        }
+
+        .color-item:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.10);
+        }
+
+        .color-item:hover img {
+            transform: scale(1.025);
+        }
+
+
+
+
+        /* =========================================================
+           FAQ
+        ========================================================= */
+        .faq-container {
+            width: 100%;
+            margin: 0 0 44px;
+        }
+
+        .faq-header {
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 22px;
+            line-height: 1.2;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 16px;
+            letter-spacing: .02em;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(244,244,244,0.15);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: #F4F4F4;
+            padding: 18px 0;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            color: rgba(244,244,244,0.7);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.is-open::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(244,244,244,0.8);
+        }
+
+        .faq-answer-inner {
+            padding-bottom: 20px;
+        }
+
+        /* =========================================================
+           PRODUTOS
+        ========================================================= */
+
+        .products {
+            width: 100%;
+            padding: 70px 0 160px;
+            scroll-margin-top: 30px;
+        }
+
+        .products-grid {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 88px;
+        }
+
+        .product-category { width: 100%; }
+
+        .product-category-title {
+            margin: 0 0 8px;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: .02em;
+            text-transform: uppercase;
+        }
+
+        .product-category-description {
+            margin: 0 0 34px;
+            min-height: 1em;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+
+        .product-category-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 44px 22px;
+        }
+
+        @media (max-width: 1000px) {
+            .product-category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 760px) {
+            .products-grid { gap: 64px; }
+            .product-category-title { font-size: 24px; }
+            .product-category-description { margin-bottom: 26px; }
+            .product-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 16px; }
+        }
+
+        .product-card {
+            appearance: none;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            color: #F4F4F4;
+            text-align: left;
+            cursor: pointer;
+            font: inherit;
+            min-width: 0;
+        }
+
+        .product-image-wrap {
+            position: relative;
+            width: min(100%, 245px);
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .product-image-wrap img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image-wrap img {
+            transform: scale(1.045);
+        }
+
+        .product-card {
+            transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card:focus-visible {
+            outline: 1px solid #F4F4F4;
+            outline-offset: 8px;
+        }
+
+        .product-info {
+            padding-top: 12px;
+            text-align: center;
+        }
+
+        .product-title {
+            margin: 0;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 15px;
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .product-meta {
+            margin: 4px 0 0;
+            font-size: 13px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+        .product-count {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 5px 7px;
+            background: rgba(17, 17, 17, 0.92);
+            font-size: 11px;
+            line-height: 1;
+        }
+
+        /* =========================================================
+           MODAL / VISUALIZAÇÃO AMPLIADA
+        ========================================================= */
+
+        .product-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.94);
+        }
+
+        .product-modal.is-open {
+            display: flex;
+        }
+
+        .product-modal-inner {
+            position: relative;
+            width: min(100%, 1100px);
+            height: min(90vh, 900px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-modal-image {
+            display: block;
+            max-width: calc(100% - 110px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            user-select: none;
+        }
+
+        .product-modal-close,
+        .product-modal-arrow {
+            position: absolute;
+            z-index: 2;
+            border: 0;
+            background: transparent;
+            color: #F4F4F4;
+            cursor: pointer;
+            font-family: "STIX Two Text", serif;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-modal-close {
+            top: -5px;
+            right: 0;
+            width: 42px;
+            height: 42px;
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .product-modal-arrow {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55px;
+            height: 80px;
+            font-size: 42px;
+            line-height: 1;
+        }
+
+        .product-modal-prev {
+            left: 0;
+        }
+
+        .product-modal-next {
+            right: 0;
+        }
+
+        .product-modal-arrow:hover,
+        .product-modal-close:hover {
+            opacity: 0.65;
+        }
+
+        .product-modal-counter {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            color: #F4F4F4;
+            font-size: 12px;
+            line-height: 1;
+            letter-spacing: 0.04em;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+
+        .moodboard-section {
+            margin-top: 70px;
+        }
+
+        .colors-section {
+            margin-top: 70px;
+        }
+
+        .products-section {
+            margin-top: 110px;
+        }
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .manifesto {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding: 60px 0 120px;
+            }
+
+            .manifesto-column {
+                font-size: 17px;
+            }
+
+            .manifesto-column + .manifesto-column {
+                margin-top: 1.2em;
+            }
+
+            .moodboard {
+                min-height: 1050px;
+                padding: 20px 0 100px;
+            }
+
+            .colors {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 14px;
+                padding: 0 0 120px;
+            }
+
+            .product-image-wrap {
+                width: min(100%, 210px);
+            }
+
+            .section-heading {
+                margin-bottom: 34px;
+            }
+
+            .item-01 { width: 145px; left: 0; top: 35px; }
+
+            .item-02 { width: 120px; left: 25%; top: 15px; }
+
+            .item-03 { width: 120px; left: 52%; top: 55px; }
+
+            .item-04 { width: 130px; right: 7%; top: 185px; }
+
+            .item-05 { width: 130px; left: 4%; top: 245px; }
+
+            .item-06 { width: 135px; left: 31%; top: 320px; }
+
+            .item-07 { width: 120px; right: 4%; left: auto; top: 455px; }
+
+            .item-08 { width: 135px; left: 7%; top: 555px; }
+
+            .item-09 { width: 135px; left: 42%; right: auto; top: 555px; }
+
+            .item-10 { width: 130px; right: 3%; top: 650px; }
+
+            .item-11 { width: 115px; left: 15%; top: 170px; }
+
+            .item-12 { width: 115px; left: 62%; top: 255px; }
+
+            .item-13 { width: 115px; right: 13%; top: 410px; }
+
+            .item-14 { width: 130px; left: 25%; top: 760px; }
+
+            .item-15 { width: 140px; right: 12%; top: 790px; }
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 0 20px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 34px 14px;
+            }
+
+            .product-info {
+                padding-top: 9px;
+            }
+
+            .product-title {
+                font-size: 13px;
+            }
+
+            .product-meta {
+                font-size: 11px;
+                margin-top: 3px;
+            }
+
+            .product-modal {
+                padding: 15px;
+            }
+
+            .product-modal-inner {
+                height: 88vh;
+            }
+
+            .product-modal-image {
+                max-width: calc(100% - 50px);
+                max-height: 82vh;
+            }
+
+            .product-modal-arrow {
+                width: 35px;
+                font-size: 30px;
+            }
+
+            .product-modal-prev {
+                left: -5px;
+            }
+
+            .product-modal-next {
+                right: -5px;
+            }
+
+            .colors {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 10px;
+                padding: 0 0 100px;
+            }
+
+            .section-heading {
+                gap: 10px;
+                margin-bottom: 28px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 0 12px;
+            }
+
+            .folder-tabs {
+                gap: 2px;
+            }
+
+            .folder-tab {
+                padding: 8px 8px 7px;
+                font-size: 10px;
+            }
+
+            .manifesto {
+                padding: 50px 0 100px;
+            }
+
+            .manifesto-column {
+                font-size: 16px;
+            }
+
+            .colors {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 8px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 30px 12px;
+            }
+        }
+
+
+        /* =========================================================
+           ESPAÇAMENTO E RESPONSIVIDADE DAS SEÇÕES
+        ========================================================= */
+
+        .manifesto-section {
+            margin-top: 50px;
+        }
+
+        .manifesto {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .moodboard {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .colors {
+            padding-bottom: 0;
+        }
+
+        .products {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        @media (max-width: 800px) {
+            .manifesto-section,
+            .moodboard-section,
+            .colors-section,
+            .products-section {
+                margin-top: 75px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .manifesto-section,
+            .moodboard-section,
+            .colors-section,
+            .products-section {
+                margin-top: 55px;
+            }
+
+            .section-heading {
+                gap: 10px;
+                margin-bottom: 22px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
+            }
+        }
+
+
+        /* RODAPÉ / REDES SOCIAIS */
+        .site-footer {
+            margin-top: 80px;
+            padding: 55px 0 45px;
+            border-top: 1px solid rgba(244,244,244,.45);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-socials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .footer-social {
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #F4F4F4;
+            text-decoration: none;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+
+        .footer-social svg {
+            width: 25px;
+            height: 25px;
+            fill: currentColor;
+        }
+
+        .footer-social:hover {
+            transform: translateY(-3px);
+            opacity: .65;
+        }
+
+        .footer-copy {
+            margin: 0;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #F4F4F4;
+            opacity: .65;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .site-footer {
+                margin-top: 55px;
+                padding: 40px 0 32px;
+            }
+
+            .footer-socials {
+                gap: 22px;
+            }
+        }
+
+
+        /* =========================================================
+           DOWNLOAD DA COLEÇÃO
+        ========================================================== */
+
+        .download-section {
+            width: 100%;
+            margin-top: 80px;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-width: 280px;
+            padding: 15px 28px 13px;
+            border: 1px solid #F4F4F4;
+            background: transparent;
+            color: #F4F4F4;
+            text-decoration: none;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 16px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.22);
+            transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
+        }
+
+        .download-button svg {
+            width: 17px;
+            height: 17px;
+            flex: 0 0 auto;
+            fill: currentColor;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 5px 8px 0 rgba(0, 0, 0, 0.22);
+            background: #F4F4F4;
+            color: #111111;
+        }
+
+        .download-button:focus-visible {
+            outline: 1px solid #F4F4F4;
+            outline-offset: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .download-section {
+                margin-top: 55px;
+            }
+
+            .download-button {
+                width: 100%;
+                min-width: 0;
+                padding: 14px 18px 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .download-button {
+                font-size: 12px;
+                gap: 9px;
+            }
+
+            .download-button svg {
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+    
+        /* VOLTAR AO INÍCIO */
+        .back-to-top {
+            position: fixed;
+            right: 28px;
+            bottom: 28px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #F4F4F4;
+            background: #111111;
+            color: #F4F4F4;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.22);
+            transition: opacity .25s ease, visibility .25s ease, transform .25s ease, background-color .25s ease, color .25s ease;
+            z-index: 900;
+        }
+
+        .back-to-top.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #F4F4F4;
+            color: #111111;
+            transform: translateY(-3px);
+            box-shadow: 5px 8px 0 rgba(0, 0, 0, 0.22);
+        }
+
+        .back-to-top svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .back-to-top:focus-visible {
+            outline: 1px solid #F4F4F4;
+            outline-offset: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top {
+                right: 16px;
+                bottom: 16px;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+    
+        /* =========================================================
+           UX / NAVEGAÇÃO / ACESSIBILIDADE
+        ========================================================== */
+
+        html {
+            scroll-padding-top: 72px;
+        }
+
+        body {
+            overscroll-behavior-x: none;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #F4F4F4;
+            z-index: 3000;
+            pointer-events: none;
+            transition: width .08s linear;
+        }
+
+        .floating-nav {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            z-index: 2500;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 4px;
+            background: rgba(17,17,17,.88);
+            border: 1px solid rgba(244,244,244,.22);
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, -12px);
+            transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
+        }
+
+        .floating-nav.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 145px;
+            background: linear-gradient(to bottom, rgba(0,0,0,.96) 0%, rgba(0,0,0,.72) 38%, rgba(0,0,0,.28) 72%, rgba(0,0,0,0) 100%);
+            pointer-events: none;
+            z-index: 2400;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
+        }
+
+        body.nav-visible::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.modal-open::before {
+            opacity: 1;
+            visibility: visible;
+            background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.6) 75%, rgba(0,0,0,0) 100%);
+        }
+
+        .floating-nav a {
+            color: #F4F4F4;
+            text-decoration: none;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            line-height: 1;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            padding: 9px 11px 8px;
+            transition: background .2s ease, color .2s ease;
+            white-space: nowrap;
+        }
+
+        .floating-nav a:hover,
+        .floating-nav a.is-active {
+            background: #F4F4F4;
+            color: #111111;
+        }
+
+        .catalog-tools {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 44px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(244,244,244,.28);
+        }
+
+        .catalog-search {
+            flex: 1 1 250px;
+            min-width: 220px;
+            padding: 12px 14px 10px;
+            border: 1px solid rgba(244,244,244,.5);
+            border-radius: 0;
+            outline: none;
+            background: transparent;
+            color: #F4F4F4;
+            font-family: "STIX Two Text", serif;
+            font-size: 14px;
+        }
+
+        .catalog-search::placeholder {
+            color: rgba(244,244,244,.58);
+        }
+
+        .catalog-search:focus {
+            border-color: #F4F4F4;
+            box-shadow: 0 0 0 1px #F4F4F4;
+        }
+
+        .catalog-filter {
+            min-width: 150px;
+            padding: 12px 32px 10px 12px;
+            border: 1px solid rgba(244,244,244,.5);
+            border-radius: 0;
+            outline: none;
+            background: #111111;
+            color: #F4F4F4;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .catalog-clear {
+            padding: 12px 14px 10px;
+            border: 1px solid rgba(244,244,244,.5);
+            background: transparent;
+            color: #F4F4F4;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .catalog-clear:hover {
+            background: #F4F4F4;
+            color: #111111;
+        }
+
+        .catalog-result {
+            flex: 0 0 auto;
+            font-size: 12px;
+            opacity: .62;
+        }
+
+        .product-card.is-hidden {
+            display: none;
+        }
+
+        .product-category.is-hidden {
+            display: none;
+        }
+
+        .catalog-empty {
+            display: none;
+            padding: 55px 0;
+            text-align: center;
+            border-top: 1px solid rgba(244,244,244,.2);
+            border-bottom: 1px solid rgba(244,244,244,.2);
+        }
+
+        .catalog-empty.is-visible {
+            display: block;
+        }
+
+        .catalog-empty-title {
+            margin: 0 0 8px;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 25px;
+            text-transform: uppercase;
+        }
+
+        .catalog-empty-text {
+            margin: 0;
+            font-size: 14px;
+            opacity: .7;
+        }
+
+        .product-modal-caption {
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            width: min(80%, 520px);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .product-modal-title {
+            margin: 0 0 4px;
+            font-family: "Avenir Next Condensed", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+        }
+
+        .product-modal-meta {
+            margin: 0;
+            font-size: 12px;
+            opacity: .7;
+        }
+
+        .product-modal-image {
+            touch-action: pan-y;
+        }
+
+        .modal-help {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            letter-spacing: .03em;
+            opacity: .5;
+            white-space: nowrap;
+        }
+
+        .section-heading h2,
+        .product-category-title {
+            text-wrap: balance;
+        }
+
+        @media (max-width: 700px) {
+            html {
+                scroll-padding-top: 58px;
+            }
+
+            .floating-nav {
+                top: 8px;
+                width: calc(100% - 24px);
+                justify-content: space-between;
+            }
+
+            .floating-nav a {
+                flex: 1 1 0;
+                text-align: center;
+                padding: 8px 4px 7px;
+                font-size: 9px;
+            }
+
+            .catalog-tools {
+                gap: 7px;
+                margin-bottom: 30px;
+            }
+
+            .catalog-search {
+                flex-basis: 100%;
+                min-width: 0;
+            }
+
+            .catalog-filter {
+                flex: 1 1 0;
+                min-width: 0;
+                font-size: 11px;
+            }
+
+            .catalog-clear {
+                font-size: 11px;
+            }
+
+            .catalog-result {
+                width: 100%;
+            }
+
+            .product-modal-caption {
+                bottom: 45px;
+                width: calc(100% - 80px);
+            }
+
+            .modal-help {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-tools {
+                margin-bottom: 24px;
+            }
+
+            .catalog-filter {
+                padding-left: 9px;
+                padding-right: 22px;
+            }
+
+            .catalog-clear {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <nav class="floating-nav" id="floatingNav" aria-label="Navegação da coleção">
+        <a href="#manifesto">Manifesto</a>
+        <a href="#moodboard">Moodboard</a>
+        <a href="#cores">Cores</a>
+        <a href="#produtos">Produtos</a>
+    </nav>
+
+
+    <main class="page">
+
+
+        <!-- =====================================================
+             HERO / MENU
+        ====================================================== -->
+
+        <section class="hero">
+
+            <nav class="folder-tabs" aria-label="Navegação da coleção">
+
+                <a href="#manifesto" class="folder-tab">Manifesto</a>
+                <a href="#moodboard" class="folder-tab">Moodboard</a>
+                <a href="#cores" class="folder-tab">Paleta de Cores</a>
+                <a href="#produtos" class="folder-tab">Produtos</a>
+
+            </nav>
+
+            <div class="folder">
+                <img src="src/folder.png" alt="Pasta de arquivo da coleção Archive 62|26" loading="lazy" decoding="async">
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MANIFESTO
+        ====================================================== -->
+
+        <section id="manifesto" class="section-block manifesto-section">
+
+            <div class="section-paper manifesto-paper">
+            <div class="manifesto">
+            <div class="manifesto-column">
+
+                <p>
+                    Em 1962, o mundo olhava para o céu e desenhava o futuro.
+                </p>
+
+                <p>
+                    Durante a utopia da Era Espacial, a Perfeito nascia com um propósito claro: dar forma, peso e alma à moda brasileira.
+                </p>
+
+                <p>
+                    De lá para cá, o tempo acelerou. A moda se digitalizou, se reinventou e rompeu fronteiras.
+                </p>
+
+                <p>
+                    O aviamento deixou de ser um simples detalhe funcional e tornou-se a assinatura de identidade de coleções inteiras.
+                </p>
+
+                <p>
+                    Em 2026 continuamos desenhando esse amanhã.
+                </p>
+
+                <p>
+                    Mas afinal, qual é o futuro da nossa indústria?
+                </p>
+
+            </div>
+
+
+            <div class="manifesto-column">
+
+                <p>
+                    Acreditamos que o amanhã não pertence às máquinas frias, mas à nossa capacidade de usá-las para materializar o intangível.
+                </p>
+
+                <p>
+                    O futuro da moda será onde a alta precisão tecnológica serve à emoção humana — transformando sentimento puro em inovação extraordinária.
+                </p>
+
+                <p>
+                    A coleção Archive 62|26 é uma colisão temporal.
+                </p>
+
+                <p>
+                    Resgatamos nossos modelos mais icônicos — os clássicos absolutos que moldaram a nossa história — e os projetamos no horizonte sob um novo prisma.
+                </p>
+
+                <p>
+                    O ontem e o amanhã se fundem agora.
+                </p>
+
+            </div>
+            </div>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MOODBOARD
+        ====================================================== -->
+
+        <section id="moodboard" class="section-block moodboard-section">
+
+            <div class="section-paper moodboard-paper">
+            <div class="section-heading reveal-item" id="moodboard-heading">
+                <h2>Moodboard</h2>
+            </div>
+
+            <div class="moodboard">
+
+            <!-- IMAGENS -->
+
+            <div class="moodboard-item item-01">
+                <img src="src/img-trem.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-02">
+                <img src="src/img-mao.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-03">
+                <img src="src/img.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-04">
+                <img src="src/download.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-05">
+                <img src="src/download (3).jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-06">
+                <img src="src/download (2).jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-07">
+                <img src="src/download (1).jpg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-08">
+                <img src="src/jean-paul-gaultier-3188538.jpeg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-09">
+                <img src="src/chloe-3199756.jpeg" alt="" loading="lazy" decoding="async">
+            </div>
+
+            <div class="moodboard-item item-10">
+                <img src="src/chanel-3152255.jpeg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <!-- VÍDEOS -->
+
+            <div class="moodboard-item item-11">
+
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                >
+                    <source src="src/video-01.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+
+            <div class="moodboard-item item-12">
+
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                >
+                    <source src="src/video-02.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+
+            <div class="moodboard-item item-13">
+
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                >
+                    <source src="src/video-03.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+
+            <div class="moodboard-item item-14">
+
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                >
+                    <source src="src/video-04.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+            </div>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CORES
+        ====================================================== -->
+
+        <section id="cores" class="section-block colors-section">
+
+            <div class="section-paper colors-paper">
+            <div class="section-heading reveal-item" id="cores-heading">
+                <h2>Paleta de Cores</h2>
+            </div>
+
+            <div class="colors">
+
+            <div class="color-item reveal-item"><img src="src/pantone-00.png" alt="Cartela de cor Pantone 00" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-01.png" alt="Cartela de cor Pantone 01" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-02.png" alt="Cartela de cor Pantone 02" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-03.png" alt="Cartela de cor Pantone 03" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-04.png" alt="Cartela de cor Pantone 04" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-05.png" alt="Cartela de cor Pantone 05" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-06.png" alt="Cartela de cor Pantone 06" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-07.png" alt="Cartela de cor Pantone 07" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-08.png" alt="Cartela de cor Pantone 08" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-09.png" alt="Cartela de cor Pantone 09" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-10.png" alt="Cartela de cor Pantone 10" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-11.png" alt="Cartela de cor Pantone 11" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-12.png" alt="Cartela de cor Pantone 12" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-13.png" alt="Cartela de cor Pantone 13" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-14.png" alt="Cartela de cor Pantone 14" loading="lazy" decoding="async"></div>
+            <div class="color-item reveal-item"><img src="src/pantone-15.png" alt="Cartela de cor Pantone 15" loading="lazy" decoding="async"></div>
+
+            </div>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRODUTOS
+        ====================================================== -->
+
+        <section id="produtos" class="section-block products-section">
+
+            <div class="section-paper products-paper">
+            <div class="section-heading reveal-item" id="produtos-heading">
+                <h2>Produtos</h2>
+            </div>
+
+            <div id="products-grid" class="products-grid"></div>
+            </div>
+        </section>
+
+
+
+        <section class="download-section" aria-label="Download da coleção">
+            <a
+                class="download-button"
+                href="src/Coleção ARCHIVE 62 26.pdf"
+                download="Coleção ARCHIVE 62 26.pdf"
+                aria-label="Baixar PDF da Coleção Archive 62|26"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3a1 1 0 0 1 1 1v9.59l2.29-2.3a1 1 0 0 1 1.42 1.42l-4 4a1 1 0 0 1-1.42 0l-4-4a1 1 0 1 1 1.42-1.42L11 13.59V4a1 1 0 0 1 1-1Zm-7 15a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/>
+                </svg>
+                <span>BAIXAR PDF VIRTUAL</span>
+            </a>
+        </section>
+        <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4.5a1 1 0 0 1 .707.293l6 6a1 1 0 0 1-1.414 1.414L13 7.914V20a1 1 0 1 1-2 0V7.914l-4.293 4.293a1 1 0 1 1-1.414-1.414l6-6A1 1 0 0 1 12 4.5Z"/>
+            </svg>
+        </button>
+
+<footer class="site-footer" aria-label="Redes sociais">
+            <nav class="footer-socials" aria-label="Redes sociais da Perfeito">
+                <a class="footer-social" href="https://www.instagram.com/perfeitoacessoriosdemoda/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg>
+                </a>
+                <a class="footer-social" href="https://www.tiktok.com/@perfeitoacessoriosdemoda" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.4 1.9 1.5 3.1 3.4 3.7v3.1c-1.3-.1-2.5-.5-3.5-1.1v6.1c0 4-2.6 6.2-6 6.2-3.2 0-5.7-2.2-5.7-5.3 0-3.4 2.8-5.5 6-5.1v3.1c-1.6-.2-2.7.6-2.7 2 0 1.3 1 2.2 2.4 2.2 1.5 0 2.5-1 2.5-3.2V3h3.6Z"/></svg>
+                </a>
+                <a class="footer-social" href="https://www.linkedin.com/company/perfeitoacessoriosdemoda/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.16 3.5A2.16 2.16 0 1 1 5.15 7.82 2.16 2.16 0 0 1 5.16 3.5ZM3.35 9h3.62v11.65H3.35V9Zm5.9 0h3.47v1.59h.05c.48-.91 1.66-1.87 3.42-1.87 3.66 0 4.34 2.41 4.34 5.55v6.38h-3.62v-5.65c0-1.35-.02-3.09-1.88-3.09-1.89 0-2.18 1.47-2.18 2.99v5.75H9.25V9Z"/></svg>
+                </a>
+                <a class="footer-social" href="https://br.pinterest.com/perfeitoacessorios/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" title="Pinterest">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.017 0C5.396 0 0 5.396 0 12.017c0 5.079 3.158 9.422 7.613 11.19-.105-.949-.2-2.405.042-3.441.219-.937 1.407-5.961 1.407-5.961s-.359-.72-.359-1.781c0-1.669.967-2.914 2.17-2.914 1.024 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.992 3.995-.283 1.194.6 2.166 1.777 2.166 2.133 0 3.772-2.249 3.772-5.498 0-2.874-2.064-4.886-5.013-4.886-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.137.893 2.739a.36.36 0 0 1 .083.344c-.091.378-.294 1.194-.334 1.36-.052.219-.17.266-.392.16-1.462-.68-2.374-2.816-2.374-4.535 0-3.69 2.68-7.078 7.725-7.078 4.056 0 7.209 2.89 7.209 6.754 0 4.031-2.54 7.274-6.066 7.274-1.185 0-2.298-.616-2.68-1.343l-.729 2.775c-.263 1.015-.974 2.285-1.452 3.061 1.094.338 2.244.52 3.438.52C18.638 24 24 18.604 24 12.017 24 5.396 18.638 0 12.017 0Z"/></svg>
+                </a>
+            </nav>
+            <p class="footer-copy">PERFEITO ACESSÓRIOS DE MODA · COLEÇÃO ARCHIVE 62|26</p>
+        </footer>
+
+    </main>
+
+
+    <!-- =========================================================
+         AUTOPLAY DOS VÍDEOS
+    ========================================================== -->
+
+
+    <!-- =========================================================
+         MODAL DE PRODUTO
+    ========================================================== -->
+
+    <div id="product-modal" class="product-modal" aria-hidden="true">
+        <div class="product-modal-inner" role="dialog" aria-modal="true" aria-label="Visualização ampliada do produto">
+            <button type="button" class="product-modal-close" aria-label="Fechar">×</button>
+            <button type="button" class="product-modal-arrow product-modal-prev" aria-label="Imagem anterior">‹</button>
+
+            <img id="product-modal-image" class="product-modal-image" src="" alt="">
+
+            <button type="button" class="product-modal-arrow product-modal-next" aria-label="Próxima imagem">›</button>
+            <div id="product-modal-counter" class="product-modal-counter"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================================
+               AUTOPLAY DOS VÍDEOS
+            ====================================================== */
+
+            const videos = document.querySelectorAll(".moodboard video");
+
+            videos.forEach(function (video) {
+                video.muted = true;
+                video.setAttribute("muted", "");
+                video.setAttribute("playsinline", "");
+                video.setAttribute("autoplay", "");
+                video.setAttribute("loop", "");
+
+                const playVideo = function () {
+                    const promise = video.play();
+
+                    if (promise !== undefined) {
+                        promise.catch(function () {
+                            /* O navegador pode bloquear o autoplay. */
+                        });
+                    }
+                };
+
+                playVideo();
+            });
+
+
+            /* =====================================================
+               PRODUTOS
+            ====================================================== */
+
+            const products = [{"images":["src/itens/10033-18-002.png"],"reference":"10033","dimension":"18’","color":"002"},{"images":["src/itens/10034-16-002(1).png","src/itens/10034-16-002(2).png","src/itens/10034-16-002(3).png"],"reference":"10034","dimension":"16’","color":"002"},{"images":["src/itens/10034-24-002(1).png","src/itens/10034-24-002(2).png","src/itens/10034-24-002(3).png"],"reference":"10034","dimension":"24’","color":"002"},{"images":["src/itens/60696-48-002(1).png","src/itens/60696-48-002(2).png","src/itens/60696-48-002(3).png"],"reference":"60696","dimension":"48’","color":"002"},{"images":["src/itens/142241-35x8-5-002(1).png","src/itens/142241-35x8-5-002(2).png"],"reference":"142241","dimension":"35 x 8,5","color":"002"},{"images":["src/itens/18375-36-7027(1).png","src/itens/18375-36-7027(2).png","src/itens/18375-36-7027(3).png"],"reference":"18375","dimension":"36’","color":"7027"},{"images":["src/itens/18376-40-7027(1).png","src/itens/18376-40-7027(2).png","src/itens/18376-40-7027(3).png"],"reference":"18376","dimension":"40’","color":"7027"},{"images":["src/itens/24316-17mm-7027(1).png","src/itens/24316-17mm-7027(2).png","src/itens/24316-17mm-7027(3).png"],"reference":"24316","dimension":"17mm","color":"7027"},{"images":["src/itens/18377-14-7097(1).png","src/itens/18377-14-7097(2).png","src/itens/18377-14-7097(3).png"],"reference":"18377","dimension":"14’","color":"7097"},{"images":["src/itens/132095-34x24-7104.png"],"reference":"132095","dimension":"34 x 24","color":"7104"},{"images":["src/itens/137738-65x30-6647.png"],"reference":"137738","dimension":"65 x 30","color":"4431"},{"images":["src/itens/32155-24-6251(1).png","src/itens/32155-24-6251(2).png"],"reference":"32155","dimension":"24’","color":"6251"},{"images":["src/itens/32155-40-6251(1).png","src/itens/32155-40-6251(2).png"],"reference":"32155","dimension":"40’","color":"6251"},{"images":["src/itens/142234-17x17-6251(1).png","src/itens/142234-17x17-6251(2).png"],"reference":"142234","dimension":"17 x 17","color":"6251"},{"images":["src/itens/142235-17-5x14-6-6251(1).png","src/itens/142235-17-5x14-6-6251(2).png"],"reference":"142235","dimension":"17,5 x 14,6","color":"6251"},{"images":["src/itens/142236-30x16-6251(1).png","src/itens/142236-30x16-6251(2).png"],"reference":"142236","dimension":"30 x 16","color":"6251"},{"images":["src/itens/142239-28x8-6251(1).png","src/itens/142239-28x8-6251(2).png"],"reference":"142239","dimension":"28 x 8","color":"6251"},{"images":["src/itens/232154-32Q-6251(Brilho)(1).png","src/itens/232154-32Q-6251(Brilho)(2).png","src/itens/232154-32Q-6251(Brilho)(3).png"],"reference":"232154","dimension":"32Q","color":"6251"},{"images":["src/itens/232154-32Q-6251(Fosco)(1).png","src/itens/232154-32Q-6251(Fosco)(2).png","src/itens/232154-32Q-6251(Fosco)(3).png"],"reference":"232154","dimension":"32Q","color":"6251"},{"images":["src/itens/1166532158-32-6251(1).png","src/itens/1166532158-32-6251(2).png"],"reference":"1166532158","dimension":"32","color":"6251"},{"images":["src/itens/14360-32-7090(1).png","src/itens/14360-32-7090(2).png"],"reference":"14360","dimension":"32","color":"7090"},{"images":["src/itens/1166732160-18-7068(1).png","src/itens/1166732160-18-7068(2).png"],"reference":"1166732160","dimension":"18’","color":"7068"},{"images":["src/itens/1166732160-32-7068(1).png","src/itens/1166732160-32-7068(2).png"],"reference":"1166732160","dimension":"32’","color":"7068"},{"images":["src/itens/32159-24-7069(1).png","src/itens/32159-24-7069(2).png","src/itens/32159-24-7069(3).png"],"reference":"32159","dimension":"24’","color":"7068"},{"images":["src/itens/142237-16-51x16-51-7073(1).png","src/itens/142237-16-51x16-51-7073(2).png"],"reference":"142237","dimension":"16,51 x 16,51","color":"7073"},{"images":["src/itens/142238-18-8x18-7073(1).png","src/itens/142238-18-8x18-7073(2).png"],"reference":"142238","dimension":"18,8 x 18,7","color":"7073"},{"images":["src/itens/14358-18-7085(1).png","src/itens/14358-18-7085(2).png"],"reference":"14358","dimension":"18’","color":"7085"},{"images":["src/itens/14358-28-7085(1).png","src/itens/14358-28-7085(2).png"],"reference":"14358","dimension":"28’","color":"7085"},{"images":["src/itens/18370-40x40-7091(1).png","src/itens/18370-40x40-7091(2).png","src/itens/18370-40x40-7091(3).png"],"reference":"18370","dimension":"40 x 40","color":"7091"},{"images":["src/itens/18371-37x12-5-7091.png"],"reference":"18371","dimension":"37 x 12,5","color":"7091"},{"images":["src/itens/18378-28-7091(1).png","src/itens/18378-28-7091(2).png","src/itens/18378-28-7091(3).png"],"reference":"18378","dimension":"28’","color":"7091"},{"images":["src/itens/18379-20mm-7098(1).png","src/itens/18379-20mm-7098(2).png","src/itens/18379-20mm-7098(3).png"],"reference":"18379","dimension":"20mm","color":"7098"},{"images":["src/itens/18380-142x24-7098.png"],"reference":"18380","dimension":"142 x 24","color":"7098"},{"images":["src/itens/18381-62-23x40-7101.png"],"reference":"18381","dimension":"62,23 x 40","color":"7101"},{"images":["src/itens/18382-64-73x25-73-7101.png"],"reference":"18382","dimension":"64,73 x 25,73","color":"7101"},{"images":["src/itens/18384-48-7102(1).png","src/itens/18384-48-7102(2).png","src/itens/18384-48-7102(3).png"],"reference":"18384","dimension":"48’","color":"7102"},{"images":["src/itens/18381-32-7103(1).png","src/itens/18381-32-7103(2).png","src/itens/18381-32-7103(3).png"],"reference":"18383","dimension":"32’","color":"7103"}];
+
+            const productsGrid = document.getElementById("products-grid");
+            const modal = document.getElementById("product-modal");
+            const modalImage = document.getElementById("product-modal-image");
+            const modalCounter = document.getElementById("product-modal-counter");
+            const modalClose = document.querySelector(".product-modal-close");
+            const modalPrev = document.querySelector(".product-modal-prev");
+            const modalNext = document.querySelector(".product-modal-next");
+
+            let currentProduct = 0;
+            let currentImage = 0;
+
+            const productCategories = [
+                { title: "Astro Chic", references: ["18375", "10033", "10034", "60696", "18376", "24316", "132095", "18377", "142241"] },
+                { title: "Eco-Utopia", references: ["14360", "142239", "32155", "142236", "232154", "142234", "142235", "1166532158"] },
+                { title: "Matcha Tech", references: ["18380", "18379", "14358", "142237", "142238", "137738"] },
+                { title: "Bio-Sintonia", references: ["18378", "1166732160", "32159", "18370", "18371"] },
+                { title: "Pop Color", references: ["18381", "18382", "18383", "18384"] }
+            ];
+
+            function renderProductCard(product, productIndex, targetGrid) {
+                const card = document.createElement("button");
+                card.type = "button";
+                card.className = "product-card reveal-item";
+                card.setAttribute("aria-label", "Visualizar produto");
+
+                const imageWrap = document.createElement("div");
+                imageWrap.className = "product-image-wrap";
+
+                const image = document.createElement("img");
+                image.src = product.images[0];
+                image.alt = "Artigo " + product.reference;
+                image.loading = "lazy";
+                image.decoding = "async";
+                imageWrap.appendChild(image);
+
+                if (product.images.length > 1) {
+                    const count = document.createElement("span");
+                    count.className = "product-count";
+                    count.textContent = product.images.length + " imagens";
+                    imageWrap.appendChild(count);
+                }
+
+                const info = document.createElement("div");
+                info.className = "product-info";
+
+                const title = document.createElement("p");
+                title.className = "product-title";
+                title.textContent = product.reference;
+
+                const meta = document.createElement("p");
+                meta.className = "product-meta";
+                meta.textContent = product.dimension + " | C " + product.color;
+
+                info.appendChild(title);
+                info.appendChild(meta);
+                card.appendChild(imageWrap);
+                card.appendChild(info);
+
+                card.addEventListener("click", function () { openProduct(productIndex); });
+                targetGrid.appendChild(card);
+            }
+
+            productCategories.forEach(function (category) {
+                const categorySection = document.createElement("section");
+                categorySection.className = "product-category";
+                categorySection.setAttribute("aria-label", category.title);
+
+                const categoryTitle = document.createElement("h3");
+                categoryTitle.className = "product-category-title";
+                categoryTitle.textContent = category.title;
+
+                const categoryDescription = document.createElement("p");
+                categoryDescription.className = "product-category-description";
+                categoryDescription.textContent = category.description;
+
+                const categoryGrid = document.createElement("div");
+                categoryGrid.className = "product-category-grid";
+
+                categorySection.appendChild(categoryTitle);
+                categorySection.appendChild(categoryDescription);
+
+                if (category.title === "Eco-Utopia") {
+                    const faqContainer = document.createElement("div");
+                    faqContainer.className = "faq-container";
+                    
+
+
+                    const faqData = [
+                        { q: "1. O que é a resina poliéster base PET recuperado?", a: "É uma resina desenvolvida a partir do reaproveitamento e reciclagem de garrafas PET pós-consumo. Através de um processo de engenharia química, o plástico PET reciclado é convertido em ácido tereftálico recuperado, que serve como base para a criação da resina poliéster usada na fabricação de botões, beads, argolas e fivelas." },
+                        { q: "2. Como essa linha ajuda no apelo sustentável da minha coleção?", a: "Ao escolher esses aviamentos, sua marca promove a economia circular e o upcycling de resíduos plásticos. Você ajuda a retirar garrafas PET do meio ambiente e reduz o uso de matérias-primas virgens derivadas do petróleo, agregando valor ecológico real às suas peças de vestuário." },
+                        { q: "3. A qualidade e a durabilidade das peças recicladas são inferiores às de resina comum?", a: "Não. As propriedades mecânicas, como resistência ao impacto, módulo de flexão e dureza, mantêm o alto padrão exigido pelo mercado têxtil. O processo químico garante que a peça final entregue a mesma durabilidade e estrutura que uma resina convencional." },
+                        { q: "4. Qual é o acabamento visual e estético dos botões e acessórios?", a: "A cor da linha Eco-Utopia é a cor original da resina, que pode sofrer variações de tons devido sua origem reciclável. Ainda assim, a resina aceita perfeitamente pigmentação e polimento. Isso permite produzir peças com superfícies de alto brilho, acabamento fosco, tons opacos ou efeitos translúcidos, adaptando-se a diferentes cartelas de cores e tendências de moda. Consulte viabilidade junto ao nosso time de desenvolvimento." },
+                        { q: "5. Posso aplicar esses aviamentos em peças que passam por lavagens industriais?", a: "Sim. Os produtos possuem excelente estabilidade térmica e boa resistência mecânica, sendo adequados para processos normais de confecção, costura e manutenção das peças do vestuário." }
+                    ];
+
+                    faqData.forEach(function(item) {
+                        const faqItem = document.createElement("div");
+                        faqItem.className = "faq-item";
+                        
+                        const question = document.createElement("button");
+                        question.className = "faq-question";
+                        question.textContent = item.q;
+                        
+                        const answer = document.createElement("div");
+                        answer.className = "faq-answer";
+                        answer.innerHTML = '<div class="faq-answer-inner">' + item.a + '</div>';
+                        
+                        question.addEventListener("click", function() {
+                            const isOpen = question.classList.contains("is-open");
+                            if (!isOpen) {
+                                question.classList.add("is-open");
+                                answer.style.maxHeight = answer.scrollHeight + "px";
+                            } else {
+                                question.classList.remove("is-open");
+                                answer.style.maxHeight = null;
+                            }
+                        });
+                        
+                        faqItem.appendChild(question);
+                        faqItem.appendChild(answer);
+                        faqContainer.appendChild(faqItem);
+                    });
+                    
+                    categorySection.appendChild(faqContainer);
+                }
+
+                categorySection.appendChild(categoryGrid);
+                productsGrid.appendChild(categorySection);
+
+                category.references.forEach(function (reference) {
+                    products.forEach(function (product, productIndex) {
+                        if (product.reference === reference) {
+                            renderProductCard(product, productIndex, categoryGrid);
+                        }
+                    });
+                });
+            });
+
+
+            function updateModal() {
+                const product = products[currentProduct];
+
+                modalImage.src = product.images[currentImage];
+                modalImage.alt = "Artigo " + product.reference;
+
+                if (product.images.length > 1) {
+                    modalPrev.style.display = "flex";
+                    modalNext.style.display = "flex";
+                    modalCounter.style.display = "block";
+                    modalCounter.textContent = (currentImage + 1) + " / " + product.images.length;
+                } else {
+                    modalPrev.style.display = "none";
+                    modalNext.style.display = "none";
+                    modalCounter.style.display = "none";
+                }
+            }
+
+
+            function openProduct(productIndex) {
+                currentProduct = productIndex;
+                currentImage = 0;
+
+                updateModal();
+
+                modal.classList.add("is-open");
+                modal.setAttribute("aria-hidden", "false");
+                document.body.classList.add("modal-open");
+            }
+
+
+            function closeProduct() {
+                modal.classList.remove("is-open");
+                modal.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("modal-open");
+                modalImage.src = "";
+            }
+
+
+            function previousImage() {
+                const product = products[currentProduct];
+
+                if (product.images.length <= 1) return;
+
+                currentImage = (currentImage - 1 + product.images.length) % product.images.length;
+                updateModal();
+            }
+
+
+            function nextImage() {
+                const product = products[currentProduct];
+
+                if (product.images.length <= 1) return;
+
+                currentImage = (currentImage + 1) % product.images.length;
+                updateModal();
+            }
+
+
+            modalClose.addEventListener("click", closeProduct);
+            modalPrev.addEventListener("click", previousImage);
+            modalNext.addEventListener("click", nextImage);
+
+            modal.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    closeProduct();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (!modal.classList.contains("is-open")) return;
+
+                if (event.key === "Escape") {
+                    closeProduct();
+                }
+
+                if (event.key === "ArrowLeft") {
+                    previousImage();
+                }
+
+                if (event.key === "ArrowRight") {
+                    nextImage();
+                }
+            });
+
+
+
+            /* BOTÃO VOLTAR AO INÍCIO */
+            const backToTop = document.querySelector(".back-to-top");
+
+            function updateBackToTop() {
+                backToTop.classList.toggle("is-visible", window.scrollY > 400);
+            }
+
+            window.addEventListener("scroll", updateBackToTop, { passive: true });
+            updateBackToTop();
+
+            backToTop.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            /* =====================================================
+               ANIMAÇÕES DE ENTRADA
+            ====================================================== */
+
+            const revealElements = document.querySelectorAll(".reveal-item");
+
+            if ("IntersectionObserver" in window) {
+                const revealObserver = new IntersectionObserver(function (entries, observer) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    });
+                }, {
+                    threshold: 0.08,
+                    rootMargin: "0px 0px -40px 0px"
+                });
+
+                revealElements.forEach(function (element, index) {
+                    if (element.classList.contains("product-card")) {
+                        element.style.transitionDelay = Math.min((index % 5) * 0.06, 0.24) + "s";
+                    }
+                    revealObserver.observe(element);
+                });
+            } else {
+                revealElements.forEach(function (element) {
+                    element.classList.add("is-visible");
+                });
+            }
+
+        });
+    </script>
+<script>
+(function () {
+    "use strict";
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+    /* ---------------------------------------------------------
+       Scroll progress + floating navigation
+    --------------------------------------------------------- */
+    const progress = $("#scrollProgress");
+    const floatingNav = $("#floatingNav");
+    const navLinks = $$(".floating-nav a");
+    const sections = navLinks
+        .map(link => $(link.getAttribute("href")))
+        .filter(Boolean);
+
+    function updateScrollUI() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const percent = max > 0 ? (scrollTop / max) * 100 : 0;
+
+        if (progress) progress.style.width = percent + "%";
+        if (floatingNav) floatingNav.classList.toggle("is-visible", scrollTop > 420);
+        document.body.classList.toggle("nav-visible", scrollTop > 420);
+
+        let active = sections[0];
+        sections.forEach(section => {
+            if (section.getBoundingClientRect().top <= 120) active = section;
+        });
+
+        navLinks.forEach(link => {
+            link.classList.toggle(
+                "is-active",
+                active && link.getAttribute("href") === "#" + active.id
+            );
+        });
+    }
+
+    window.addEventListener("scroll", updateScrollUI, { passive: true });
+    window.addEventListener("resize", updateScrollUI);
+    updateScrollUI();
+
+    /* ---------------------------------------------------------
+       Smooth navigation
+    --------------------------------------------------------- */
+    navLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            const target = $(this.getAttribute("href"));
+            if (!target) return;
+            event.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    });
+
+    /* ---------------------------------------------------------
+       Back to top
+    --------------------------------------------------------- */
+    const backToTop = $("#backToTop");
+    if (backToTop) {
+        backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    /* ---------------------------------------------------------
+       Product catalog search/filter
+    --------------------------------------------------------- */
+    const cards = $$(".product-card");
+    const categories = $$(".product-category");
+    const search = $("#catalogSearch");
+    const colorFilter = $("#catalogColor");
+    const categoryFilter = $("#catalogCategory");
+    const clearButton = $("#catalogClear");
+    const result = $("#catalogResult");
+    const empty = $("#catalogEmpty");
+
+    function normalize(value) {
+        return (value || "")
+            .toString()
+            .normalize("NFD")
+            .replace(/[\\u0300-\\u036f]/g, "")
+            .toLowerCase()
+            .trim();
+    }
+
+    function getCardData(card) {
+        const title = $(".product-title", card);
+        const meta = $(".product-meta", card);
+        const category = card.closest(".product-category");
+        const categoryTitle = $(".product-category-title", category);
+        const titleText = title ? title.textContent : "";
+        const metaText = meta ? meta.textContent : "";
+        const categoryText = categoryTitle ? categoryTitle.textContent : "";
+
+        // Color is normally encoded as Cxxx in the product metadata/title.
+        const combined = titleText + " " + metaText;
+        const colorMatch = combined.match(/(?:^|\\s)C\\s*([0-9]{3,5})(?:\\s|$)/i);
+
+        return {
+            search: normalize(combined + " " + categoryText),
+            color: colorMatch ? colorMatch[1] : "",
+            category: categoryText.trim()
+        };
+    }
+
+    const cardData = new Map(cards.map(card => [card, getCardData(card)]));
+
+    function populateFilters() {
+        if (colorFilter) {
+            const colors = [...new Set(
+                cards.map(card => cardData.get(card).color).filter(Boolean)
+            )].sort((a, b) => {
+                const na = parseInt(a, 10), nb = parseInt(b, 10);
+                return (Number.isNaN(na) ? a : na) - (Number.isNaN(nb) ? b : nb);
+            });
+
+            colors.forEach(color => {
+                const option = document.createElement("option");
+                option.value = color;
+                option.textContent = "C" + color;
+                colorFilter.appendChild(option);
+            });
+        }
+
+        if (categoryFilter) {
+            const names = [...new Set(
+                cards.map(card => cardData.get(card).category).filter(Boolean)
+            )];
+
+            names.forEach(name => {
+                const option = document.createElement("option");
+                option.value = name;
+                option.textContent = name;
+                categoryFilter.appendChild(option);
+            });
+        }
+    }
+
+    function applyFilters() {
+        const query = normalize(search ? search.value : "");
+        const selectedColor = colorFilter ? colorFilter.value : "";
+        const selectedCategory = categoryFilter ? categoryFilter.value : "";
+
+        let visible = 0;
+
+        cards.forEach(card => {
+            const data = cardData.get(card);
+            const matchesSearch = !query || data.search.includes(query);
+            const matchesColor = !selectedColor || data.color === selectedColor;
+            const matchesCategory = !selectedCategory || data.category === selectedCategory;
+            const show = matchesSearch && matchesColor && matchesCategory;
+
+            card.classList.toggle("is-hidden", !show);
+            if (show) visible++;
+        });
+
+        categories.forEach(category => {
+            const visibleCards = $$(".product-card:not(.is-hidden)", category);
+            category.classList.toggle("is-hidden", visibleCards.length === 0);
+        });
+
+        if (result) {
+            result.textContent = visible + (visible === 1 ? " PRODUTO" : " PRODUTOS");
+        }
+
+        if (empty) empty.classList.toggle("is-visible", visible === 0);
+    }
+
+    populateFilters();
+
+    if (search) search.addEventListener("input", applyFilters);
+    if (colorFilter) colorFilter.addEventListener("change", applyFilters);
+    if (categoryFilter) categoryFilter.addEventListener("change", applyFilters);
+
+    if (clearButton) {
+        clearButton.addEventListener("click", function () {
+            if (search) search.value = "";
+            if (colorFilter) colorFilter.value = "";
+            if (categoryFilter) categoryFilter.value = "";
+            applyFilters();
+            if (search) search.focus();
+        });
+    }
+
+    applyFilters();
+
+    /* ---------------------------------------------------------
+       Product modal: keyboard + swipe + dynamic caption
+       Works alongside the site's existing modal logic.
+    --------------------------------------------------------- */
+    const modal = $(".product-modal");
+    const modalImage = $(".product-modal-image");
+    const modalTitle = $("#productModalTitle");
+    const modalMeta = $("#productModalMeta");
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    function currentProductFromModalImage() {
+        if (!modalImage || !modalImage.src) return null;
+        return cards.find(card => {
+            const img = $("img", card);
+            return img && (img.src === modalImage.src || img.currentSrc === modalImage.src);
+        }) || null;
+    }
+
+    function updateModalCaption() {
+        const card = currentProductFromModalImage();
+        if (!card) return;
+
+        const title = $(".product-title", card);
+        const meta = $(".product-meta", card);
+
+        if (modalTitle) modalTitle.textContent = title ? title.textContent.trim() : "";
+        if (modalMeta) modalMeta.textContent = meta ? meta.textContent.trim() : "";
+    }
+
+    if (modal) {
+        const observer = new MutationObserver(updateModalCaption);
+        observer.observe(modal, {
+            attributes: true,
+            childList: true,
+            subtree: true
+        });
+
+        if (modalImage) {
+            modalImage.addEventListener("load", updateModalCaption);
+            modalImage.addEventListener("touchstart", function (event) {
+                const touch = event.changedTouches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+            }, { passive: true });
+
+            modalImage.addEventListener("touchend", function (event) {
+                const touch = event.changedTouches[0];
+                const dx = touch.clientX - touchStartX;
+                const dy = touch.clientY - touchStartY;
+
+                if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+
+                const next = dx < 0
+                    ? $(".product-modal-next")
+                    : $(".product-modal-prev");
+
+                if (next) next.click();
+            }, { passive: true });
+        }
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (!modal || !modal.classList.contains("is-open")) return;
+
+        if (event.key === "Escape") {
+            const close = $(".product-modal-close");
+            if (close) close.click();
+        }
+
+        if (event.key === "ArrowLeft") {
+            const prev = $(".product-modal-prev");
+            if (prev) prev.click();
+        }
+
+        if (event.key === "ArrowRight") {
+            const next = $(".product-modal-next");
+            if (next) next.click();
+        }
+    });
+
+    /* ---------------------------------------------------------
+       Native lazy loading + video behavior
+    --------------------------------------------------------- */
+    $$("img").forEach((img, index) => {
+        if (index > 1 && !img.hasAttribute("loading")) {
+            img.setAttribute("loading", "lazy");
+        }
+        if (!img.hasAttribute("decoding")) {
+            img.setAttribute("decoding", "async");
+        }
+    });
+
+    $$("video").forEach(video => {
+        video.setAttribute("playsinline", "");
+        video.setAttribute("loop", "");
+        video.muted = true;
+        video.setAttribute("muted", "");
+
+        const tryPlay = () => {
+            const promise = video.play();
+            if (promise && typeof promise.catch === "function") promise.catch(() => {});
+        };
+
+        if (video.readyState >= 2) {
+            tryPlay();
+        } else {
+            video.addEventListener("canplay", tryPlay, { once: true });
+        }
+    });
+
+})();
+</script>
+
+</body>
+
+</html>
